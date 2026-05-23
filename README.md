@@ -1,2 +1,0 @@
-# NEMBAK-CEWEK
-Dor

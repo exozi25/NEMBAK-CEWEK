@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff5f8f,#ff8fb1);
+overflow:hidden;
+}
+
+.card{
+width:90%;
+max-width:380px;
+padding:25px;
+text-align:center;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(10px);
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+animation:muncul 1s;
+color:white;
+}
+
+@keyframes muncul{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.foto{
+width:160px;
+height:160px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid white;
+margin-bottom:15px;
+}
+
+h1{
+margin-bottom:10px;
+}
+
+#typing{
+font-size:18px;
+line-height:1.6;
+min-height:90px;
+margin-bottom:20px;
+}
+
+button{
+padding:12px 22px;
+border:none;
+border-radius:30px;
+font-size:15px;
+cursor:pointer;
+transition:.3s;
+}
+
+.yes{
+background:#ff1744;
+color:white;
+}
+
+.yes:hover{
+transform:scale(1.05);
+}
+
+.no{
+background:white;
+margin-left:5px;
+}
+
+#hasil{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+#awal{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ff5f8f,#ff8fb1);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+z-index:999;
+}
+
+#awal h1{
+font-size:30px;
+margin-bottom:20px;
+}
+
+#awal button{
+background:white;
+color:#ff1744;
+font-weight:bold;
+}
+
+.heart{
+position:absolute;
+font-size:22px;
+animation:naik 4s linear forwards;
+pointer-events:none;
+}
+
+@keyframes naik{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-300px);
+opacity:0;
+}
+}
+</style>
+</head>
+<body>
+
+<div id="awal">
+<h1>❤️ Pesan Rahasia ❤️</h1>
+<button onclick="mulai()">Buka Sekarang</button>
+</div>
+
+<audio id="musik" loop>
+<source src="wirang.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+<img src="foto.jpg" class="foto">
+
+<h1>Hai Cantik ❤️</h1>
+
+<div id="typing"></div>
+
+<button class="yes" onclick="terima()">Aku Mau ❤️</button>
+<button class="no" id="kabur">Tidak 😅</button>
+
+<div id="hasil"></div>
+
+</div>
+
+<script>
+
+function mulai(){
+document.getElementById("awal").style.display="none";
+document.getElementById("musik").play();
+ketik();
+}
+
+const teks =
+"Aku udah lama pengen ngomong ini. Sejak kenal kamu, hari-hariku jadi lebih berwarna. Aku nyaman saat ngobrol sama kamu, senang saat lihat senyummu, dan selalu kepikiran kamu. Jadi... mau nggak kamu jadi pacarku? ❤️";
+
+let i = 0;
+
+function ketik(){
+if(i < teks.length){
+document.getElementById("typing").innerHTML += teks.charAt(i);
+i++;
+setTimeout(ketik,40);
+}
+}
+
+function terima(){
+document.getElementById("hasil").innerHTML =
+"🥰 YEAYYY! Sekarang kamu resmi jadi pacarku ❤️";
+}
+
+const no = document.getElementById("kabur");
+
+no.addEventListener("click",function(){
+let x=Math.random()*250;
+let y=Math.random()*250;
+
+this.style.position="absolute";
+this.style.left=x+"px";
+this.style.top=y+"px";
+});
+
+function hati(){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="0";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},4000);
+}
+
+setInterval(hati,1200);
+
+</script>
+
+</body>
+</html>
